@@ -1,0 +1,9 @@
+{
+    "users": [
+        { "uname": "Suraj123", "name": "Suraj Sanwal", "userImg": "../images/user.png" },
+        { "uname": "lazyduck408", "name": "romain", "userImg": "../images/search_.png" },
+        { "uname": "lazyduck408", "name": "romain", "userImg": "../images/search_.png" },
+        { "uname": "lazyduck408", "name": "romain", "userImg": "../images/search_.png" },
+    ]
+}
+
