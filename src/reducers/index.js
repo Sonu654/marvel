@@ -8,6 +8,8 @@ const launchReducer=(state,action)=>{
                 ...state,
                 loading:false
             }
+        default:
+            return {...state}
     }
 }
 

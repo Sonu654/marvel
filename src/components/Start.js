@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { StyleSheet, View, BackgroundImage, TextInput, Text, Image, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, BackgroundImage, TextInput, Text, Image,Platform, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native'
 var { height, width } = Dimensions.get('window');
 import { Actions } from 'react-native-router-flux'
-import { myActions } from '../actions/';
+import  * as myActions from '../actions/';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 class Start extends Component {
@@ -14,17 +14,13 @@ class Start extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.lauch();
+  componentDidMount=()=> {
+    this.props.launch();
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    if (this.props.loading != this.nextProps.loading) {
-      this.setState(
-        this.state.loading=nextProps.loading
-      )
-    }
-  }
+  // componentWillReceiveProps = (nextProps) => {
+  
+  // }
 
   render() {
     if (this.props.loading) {
@@ -63,7 +59,7 @@ mapStateToProps = (state, props) => {
   }
 }
 
-export default Connect(mapStateToProps, mapDispatchToProps)(Start);
+export default connect(mapStateToProps, mapDispatchToProps)(Start);
 const styles = StyleSheet.create({
   activityIndicatorContainer: {
     backgroundColor: "#fff",
@@ -73,6 +69,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    marginTop: Platform.OS == 'ios' ? 20 : 0,
     flexDirection: "column",
   },
 

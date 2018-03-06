@@ -1,9 +1,8 @@
 {
     "users": [
-        { "uname": "Suraj123", "name": "Suraj Sanwal", "userImg": "../images/user.png" },
-        { "uname": "lazyduck408", "name": "romain", "userImg": "../images/search_.png" },
-        { "uname": "lazyduck408", "name": "romain", "userImg": "../images/search_.png" },
-        { "uname": "lazyduck408", "name": "romain", "userImg": "../images/search_.png" },
+        { "uname": "Suraj123", "name": "Suraj Sanwal", "userImg": "../Images/circle2.jpeg" },
+        { "uname": "lazyuck408", "name": "romain", "userImg": "../Images/circle1.jpeg" },
+        { "uname": "lazyduc08", "name": "romain", "userImg": "../Images/circle2.jpeg" }
     ]
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   Platform,
