@@ -4,6 +4,8 @@ import { StyleSheet, View, BackgroundImage, TextInput, Text, Image, TouchableOpa
 var { height, width } = Dimensions.get('window');
 import { Actions } from 'react-native-router-flux'
 import { myActions } from '../actions/';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 class Start extends Component {
   constructor(props) {
     super(props);
