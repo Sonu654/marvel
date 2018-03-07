@@ -26,11 +26,12 @@ import Add_profile from './Add_profile.js'
 
 export default class App extends Component {
   render() {
+    console.disableYellowBox = true;
     return (
       <Provider store={store}>
         <Router>
           <Stack key='root' >
-            <Scene hideNavBar hideTabBar component={Start} title="Start" key="Start" initial />
+            <Scene hideNavBar hideTabBar component={Start} title="Start" key="Start" />
             <Scene hideNavBar hideTabBar component={Create_profile} title="Profile" key="Create_profile" />
             <Scene hideNavBar hideTabBar component={New_home_housemates} title="New_home_housemates" key="New_home_housemates" />
             <Scene hideNavBar hideTabBar component={New_home_housephotos} title="New_home_housephotos" key="New_home_housephotos" />
@@ -41,7 +42,7 @@ export default class App extends Component {
             <Scene hideNavBar hideTabBar component={No_peeping} title="No_peeping" key="No_peeping" />
             <Scene hideNavBar hideTabBar component={Location} title="Location" key="Location" />
             <Scene hideNavBar hideTabBar component={Success} title="Success" key="Success" />
-            <Scene hideNavBar hideTabBar component={Add_profile} title="Add_profile" key="Add_profile"
+            <Scene hideNavBar hideTabBar component={Add_profile} title="Add_profile" key="Add_profile" initial
             />
           </Stack>
         </Router>

@@ -1,8 +1,40 @@
 {
     "users": [
-        { "uname": "Suraj123", "name": "Suraj Sanwal", "userImg": "../Images/circle2.jpeg" },
-        { "uname": "lazyuck408", "name": "romain", "userImg": "../Images/circle1.jpeg" },
-        { "uname": "lazyduc08", "name": "romain", "userImg": "../Images/circle2.jpeg" }
+        {
+            "uname": "Suraj123",
+            "name": "Suraj Sanwal",
+            "userImg": "../Images/circle2.jpeg",
+            "tags": {
+                "0": "Cooking",
+                "1": "Music",
+                "2": "Weekends",
+                "3": "Coffee",
+                "4": "Running"
+            }
+        },
+        {
+            "uname": "lazyuck408",
+            "name": "romain",
+            "userImg": "../Images/circle1.jpeg",
+            "tags": {
+                "0": "Cooking",
+                "1": "Music",
+                "2": "Weekends",
+                "3": "Coffee",
+                "4": "Running"
+            }
+        },
+        {
+            "uname": "lazyduc08",
+            "name": "romain",
+            "userImg": "../Images/circle2.jpeg",
+            "tags": {
+                "0": "Cooking",
+                "1": "Music",
+                "2": "Weekends",
+                "3": "Coffee",
+                "4": "Running"
+            }
+        }
     ]
 }
-
