@@ -11,38 +11,40 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 class New_home extends Component {
   constructor(props) {
     super(props);
-    console.log('new home constructor');
     this.state = {
       loading: true,
       users: [],
       modalVisible: false,
       contact: []
-    };
+    }
   }
 
-  componentDidMount=()=> {
+  componentDidMount() {
     this.props.getUser();
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log("props updated rendring");
+    console.log("current Props :", this.props);
+    console.log("Next Props : ", nextProps);
     if (nextProps.users != this.props.users) {
       this.setState(
         this.state.users = nextProps.users
       );
     }
+    console.log("New State: ", this.state.users);
+    console.log("Next Props : ", nextProps);
     if (nextProps.contact != this.props.contact) {
       this.setState(
         this.state.contact = nextProps.contact,
       );
     }
+    console.log("New Contact: ", this.state);
   }
 
   componentWillUnmount = () => {
-    console.log("unmounting")
+    
   }
   render() {
-  //  console.log("props loading : ",this.props.loading);
     if (this.props.loading) {
       return (
         <View style={styles.ActivityIndicatorContainer}>
@@ -59,6 +61,7 @@ class New_home extends Component {
       )
     } else {
       console.log(this.state);
+      let countUser = 0;
       userList = this.state.users.map((user) => {
         console.log('imgpath', user.userImg);
         return (
@@ -73,8 +76,9 @@ class New_home extends Component {
             </View>
           </View>
         )
+        countUser = countUser + 1;
       });
-    //  console.log("userList : ",userList);
+      console.log(userList);
       return (
         //<KeyboardAwareScrollView ref="scroll" style={{backgroundColor:'white'}}>
         <View style={styles.container}>

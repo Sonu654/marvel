@@ -1,36 +1,34 @@
 import { combineReducers } from 'redux';
-import { LAUNCH, USER_AVAILABLE, USER_FOUND } from '../actions/';
-let defaultState = {loading: true};
-const launchReducer = (state=defaultState, action) => {
-    console.log("launchReducer type : ",action.type,"...State : ",state);
-    switch (action.type) {
+import { LAUNCH,USER_AVAILABLE, USER_FOUND } from '../actions/';
+
+const launchReducer=(state,action)=>{
+    switch(action.type){
         case LAUNCH:
-            return {
+            return{
                 ...state,
-                loading: false
+                loading:false
             }
         default:
-            return { ...state }
+            return {...state}
     }
 }
 
-const userReducer = (state=defaultState, action) => {
-    console.log("userReducer type : ",action.type,"...State : ",state);
+const userReducer = (state, action) => {
+    console.log(action.type);
     switch (action.type) {
         case USER_AVAILABLE:
             return {
-                state:state,
+                ...state,
                 data: action.data,
                 loading: false,
             }
         default:
-            return { ...state }
+            return {...state}
 
     }
 };
 
-const contactReducer = (state=defaultState, action) => {
-    console.log("contactReducer type : ",action.type,"...State : ",state);
+const contactReducer = (state, action) => {
     switch (action.type) {
         case USER_FOUND:
             return {
@@ -46,9 +44,9 @@ const contactReducer = (state=defaultState, action) => {
 
 
 const rootReducer = combineReducers({
-    launchReducer,
     userReducer,
-    contactReducer
+    contactReducer,
+    launchReducer
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })
 
