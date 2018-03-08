@@ -35,15 +35,15 @@ class AddPerson extends Component {
     this.setState({ age: text })
   }
 
-  handalAddBtn = (name, age, pic, tag) => {
-    this.props.addPerson(name, age, pic, tag);
+  handalAddBtn = () => {
+    this.props.addPerson(this.state.name, this.state.age, this.state.pic,this.state.tag);
   }
 
   handleTag = (tagName) => {
     tag = this.state.tag;
     for (x in tag) {
       if (x == tagName) {
-        console.log(tag[x] = false);
+        tag[x] = false;
       }
     }
     this.setState({ tag: tag });
@@ -126,7 +126,7 @@ class AddPerson extends Component {
           </KeyboardAwareScrollView>
         </View>
         <View style={{ flex: 0.10, justifyContent: 'center', alignItems: 'center', backgroundColor: '#19B5FE' }}>
-          <TouchableOpacity style={{}} onPress={() => { this.handalAddBtn(this.state.name, this.state.age, this.state.tag) }} >
+          <TouchableOpacity style={{}} onPress={() => { this.handalAddBtn() }} >
             <Text style={{ fontSize: 20, textAlign: 'center', color: '#fff', padding: 10 }}>Add <Icon name='check' /></Text>
           </TouchableOpacity>
         </View>

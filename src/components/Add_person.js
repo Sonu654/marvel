@@ -28,9 +28,7 @@ class Add_person extends Component {
 
         <View style={{ flex: 0.1, backgroundColor: 'white', flexDirection: 'row', marginTop: 5 }}>
           <View style={{ flex: 0.7 }}>
-            <KeyboardAwareScrollView>
-              <TextInput style={{ textAlign: 'left', padding: 20, fontSize: 20, color: '#acacac', fontStyle: 'italic', marginLeft: 25 }} placeholder="Search for a person" underlineColorAndroid="transparent" />
-            </KeyboardAwareScrollView>
+            <TextInput style={{ textAlign: 'left', padding: 20, fontSize: 20, color: '#acacac', fontStyle: 'italic', marginLeft: 25 }} placeholder="Search for a person" underlineColorAndroid="transparent" />
           </View>
           <View style={{ flex: 0.3 }}>
             <Icon name='search' style={{ color: '#282828', fontSize: 20, padding: 20, marginTop: 3, marginLeft: 30 }} />
@@ -79,8 +77,8 @@ class Add_person extends Component {
           <View style={{ flex: 0.2 }}></View>
           <View style={{ flex: 0.55 }}></View>
           <View style={{ flex: 0.25 }}>
-            <Icon name='circle' style={{ color: 'rgb(68, 35, 124)', fontSize: 72, textAlign: 'center', position: 'relative' }} />
-            <Icon name='plus' style={{ color: 'white', fontSize: 26, textAlign: 'center', position: 'absolute', marginLeft: width * 0.1, marginTop: 23 }} onPress={() => Actions.Add_profile()} />
+            <Icon name='circle' style={{ color: 'rgb(68, 35, 124)', fontSize: 72, textAlign: 'center', position: 'relative' }} onPress={() => Actions.Add_profile()} />
+            <Icon name='plus' style={{ color: 'white', fontSize: 26, textAlign: 'center', position: 'absolute', marginLeft: width * 0.1, marginTop: 23 }}  />
           </View>
         </View>
 

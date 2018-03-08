@@ -7,6 +7,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 class Create_profile extends Component {
 
+  constructor(props){
+    super(props);
+    this.state={
+      loading:true
+    }
+  }
 
   componentDidMount() {
     this.props.launch();

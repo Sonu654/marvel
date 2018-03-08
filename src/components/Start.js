@@ -18,6 +18,10 @@ class Start extends Component {
     this.props.launch();
   }
 
+  componentWillUnmount=()=>{
+    console.log('unmounting');
+  }
+
   // componentWillReceiveProps = (nextProps) => {
   
   // }
