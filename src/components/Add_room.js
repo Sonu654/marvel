@@ -14,7 +14,7 @@ export default class Add_room extends Component
        <View style={styles.container}>
          <View style={{flex:0.13,backgroundColor:'rgb(68, 35, 124)',flexDirection:'row'}}>
            <View style={{flex:0.8}}>
-             <Text style={{ fontFamily:"FaktProSoft",fontSize: 22,marginLeft:50,textAlign:'center', color:'white',padding:26}}>Add a room</Text>
+             <Text style={{ fontFamily:"Verdana",fontSize: 22,marginLeft:50,textAlign:'center', color:'white',padding:26}}>Add a room</Text>
            </View>
            <View style={{flex:0.2}}>
                <Icon name='times' style={{color:'white', fontSize:20,padding:20,marginTop:10}} onPress={()=>Actions.Rooms()}/>
@@ -103,9 +103,7 @@ export default class Add_room extends Component
             <View style={{flex:0.2,marginLeft:35}}>
               <TextInput style={{height:70 }} placeholder="E.g. Downstairs with sunlight in the morning"  underlineColorAndroid = "transparent"/>
             </View>
-
           </View>
-
        </View>
     </KeyboardAwareScrollView>
     );

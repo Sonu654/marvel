@@ -21,7 +21,7 @@ export default class New_home_housephotos extends Component{
 
         <View style={{flex:0.13,backgroundColor:'rgb(68, 35, 124)',flexDirection:'row'}}>
           <View style={{flex:0.8}}>
-            <Text style={{ fontFamily:"FaktProSoft",fontSize: 22,textAlign:'right', color:'white',padding:26}}>Create a new Home</Text>
+            <Text style={{ fontFamily:"Verdana",fontSize: 22,textAlign:'right', color:'white',padding:26}}>Create a new Home</Text>
           </View>
           <View style={{flex:0.2}}>
               <Icon name='times' style={{color:'white', fontSize:20,padding:28,marginTop:3}} onPress={()=>Actions.New_home_housemates()}/>
@@ -30,10 +30,10 @@ export default class New_home_housephotos extends Component{
 
         <View style={{flex:0.28 ,marginTop:20,flexDirection:'column'}}>
               <View style={{flex:0.13}}>
-                  <Text style={{fontFamily:"FaktProSoft",fontSize: 19,fontWeight:'bold',textAlign:'center', color:'rgb(68, 35, 124)'}}>House photos</Text>
+                  <Text style={{fontFamily:"Verdana",fontSize: 19,fontWeight:'bold',textAlign:'center', color:'rgb(68, 35, 124)'}}>House photos</Text>
               </View>
               <View style={{flex:0.13}}>
-                <Text style={{fontFamily:"FaktProSoft",fontSize: 15.5,textAlign:'center', color:'gray',padding:7}}>Show us your home and lovely faces</Text>
+                <Text style={{fontFamily:"Verdana",fontSize: 15.5,textAlign:'center', color:'gray',padding:7}}>Show us your home and lovely faces</Text>
               </View>
               <View style={{flex:0.74,backgroundColor:'#f7f6f6',marginTop:10}}>
                 <TouchableOpacity>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, BackgroundImage, ScrollView, TextInput, Text, Image, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, BackgroundImage, ScrollView, TextInput, Text, Image, TouchableOpacity, Dimensions, ActivityIndicator, Platform } from 'react-native'
 var { height, width } = Dimensions.get('window');
 import { Actions } from 'react-native-router-flux'
 import * as myActions from '../actions/';
@@ -59,14 +59,16 @@ class AddPerson extends Component {
                 <Icon name='arrow-left' style={{ color: 'white', fontSize: 20, padding: 28, marginTop: 3 }} onPress={() => Actions.Add_person()} />
               </View>
               <View style={{ flex: 0.8 }}>
-                <Text style={{ fontFamily: "FaktProSoft", fontSize: 22, textAlign: 'left', color: 'white', padding: 26, marginLeft: 10 }}>Add a new person</Text>
+                <Text style={{ fontFamily: "Verdana", fontSize: 22, textAlign: 'left', color: 'white', padding: 26, marginLeft: 10 }}>Add a new person</Text>
               </View>
             </View>
             <View style={{ flex: 0.87, flexDirection: 'column', position: 'relative', backgroundColor: '#f7f6f6' }}>
               <View style={{ flex: 0.5, flexDirection: 'row', marginTop: height * 0.015 }}>
                 <View style={{ flex: 0.3 }}></View>
                 <View style={{ flex: 0.7, borderRadius: 100 }}>
-                  <Image source={require('../Images/profile.png')} style={{ height: height * 0.2, width: width * 0.4, borderRadius: 100, position: 'relative' }} />
+                  {console.log("height : ", height, " & width : ", width)}
+                  {console.log("height *0.2: ", height * 0.2, " & width *0.4: ", width * 0.355)}
+                  <Image source={require('../Images/profile.png')} style={{ height: height * 0.2, width: width * 0.355, borderRadius: 65, position: 'relative' }} />
                 </View>
                 <Icon name='circle' style={{ color: 'white', fontSize: 75, zIndex: 99, marginLeft: width * 0.52, marginTop: height * 0.15, position: 'absolute' }} />
                 <Icon name='upload' onPress={() => { this.uploadProPic() }} style={{ color: 'rgb(68, 35, 124)', zIndex: 99, fontSize: 30, marginLeft: width * 0.56, marginTop: height * 0.17, position: 'absolute' }} />
@@ -75,9 +77,9 @@ class AddPerson extends Component {
                 <View style={{ flex: 0.7 }}><Text style={{ fontSize: 20, color: '#535353', marginLeft: 35 }}>Name</Text></View>
                 <View style={{ flex: 0.3 }}><Text style={{ fontSize: 20, color: '#535353', marginLeft: 35 }}>Age</Text></View>
               </View>
-              <View style={{ flex: 0.1, flexDirection: 'row' }}>
+              <View style={{ flex: 0.1, flexDirection: 'row', marginTop: height * 0.01 }}>
                 <View style={{ flex: 0.7 }}>
-                  <TextInput onChangeText={this.handleName} style={{ fontSize: 18, marginLeft: 30 }} placeholder='ABC' underlineColorAndroid="transparent" value="Marval" />
+                  <TextInput onChangeText={this.handleName} style={{ fontSize: 18, marginLeft: 35 }} placeholder='ABC' underlineColorAndroid="transparent" value="Marval" />
                 </View>
                 <View style={{ flex: 0.3 }}>
                   <TextInput onChangeText={this.handleAge} style={{ fontSize: 18, marginLeft: 30 }} placeholder='xx' value='25' underlineColorAndroid="transparent" />
@@ -147,6 +149,7 @@ mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(AddPerson);
 const styles = StyleSheet.create({
   container: {
+    marginTop: Platform.OS == 'ios' ? 20 : 0,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
