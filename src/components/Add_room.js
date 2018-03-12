@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import React, { Component } from 'react';
 import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {StyleSheet,View,TextInput,Text,Image} from 'react-native'
+import {StyleSheet,View,TextInput,Text,Platform,Image} from 'react-native'
 export default class Add_room extends Component
 {
   render()
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
   container: {
+    marginTop: Platform.OS == 'ios' ? 20 : 0,
     flex: 1,
     flexDirection: "column",
   },

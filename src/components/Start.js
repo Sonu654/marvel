@@ -23,6 +23,7 @@ class Start extends Component {
   // }
 
   render() {
+    console.log("loading : ",this.props.loading);
     if (this.props.loading) {
       return (
         <View style={styles.ActivityIndicatorContainer}>
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
+    marginTop: Platform.OS == 'ios' ? 20 : 0,
     flex: 1,
     marginTop: Platform.OS == 'ios' ? 20 : 0,
     flexDirection: "column",

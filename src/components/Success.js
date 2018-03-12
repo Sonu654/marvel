@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {StyleSheet,View,BackgroundImage,TextInput,Text,Image,TouchableOpacity,Dimensions} from 'react-native'
+import {StyleSheet,View,BackgroundImage,TextInput,Text,Image,TouchableOpacity,Dimensions,Platform} from 'react-native'
 var {width} = Dimensions.get('window');
 var {height}=Dimensions.get('window');
 import {Actions} from 'react-native-router-flux'
@@ -20,6 +20,7 @@ export default class Start extends Component
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: Platform.OS == 'ios' ? 20 : 0,
     flex: 1,
     flexDirection: "column",
   },

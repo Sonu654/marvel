@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { LAUNCH,USER_AVAILABLE, USER_FOUND } from '../actions/';
-
-const launchReducer=(state,action)=>{
+let defaultState={loading:true};
+const launchReducer=(state=defaultState,action)=>{
     switch(action.type){
         case LAUNCH:
             return{
@@ -13,7 +13,7 @@ const launchReducer=(state,action)=>{
     }
 }
 
-const userReducer = (state, action) => {
+const userReducer = (state=defaultState, action) => {
     console.log(action.type);
     switch (action.type) {
         case USER_AVAILABLE:
@@ -28,7 +28,7 @@ const userReducer = (state, action) => {
     }
 };
 
-const contactReducer = (state, action) => {
+const contactReducer = (state=defaultState, action) => {
     switch (action.type) {
         case USER_FOUND:
             return {
@@ -44,9 +44,10 @@ const contactReducer = (state, action) => {
 
 
 const rootReducer = combineReducers({
+    launchReducer,
     userReducer,
     contactReducer,
-    launchReducer
+   
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })
 

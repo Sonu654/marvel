@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, BackgroundImage, TextInput, Text, Image, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native'
+import { StyleSheet, FlatList, View, BackgroundImage, TextInput, Text, Image, TouchableOpacity, Dimensions, Platform, ActivityIndicator } from 'react-native'
 var { height, width } = Dimensions.get('window');
 import { Actions } from 'react-native-router-flux'
 import * as myActions from '../actions/';
@@ -7,7 +7,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
+import { Avatar } from 'react-native-elements'
+import Modal from "react-native-modal";
+import renderIf from '../renderIf';
 class New_home extends Component {
   constructor(props) {
     super(props);
@@ -24,25 +26,20 @@ class New_home extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log("current Props :", this.props);
-    console.log("Next Props : ", nextProps);
     if (nextProps.users != this.props.users) {
       this.setState(
         this.state.users = nextProps.users
       );
     }
-    console.log("New State: ", this.state.users);
-    console.log("Next Props : ", nextProps);
     if (nextProps.contact != this.props.contact) {
       this.setState(
         this.state.contact = nextProps.contact,
       );
     }
-    console.log("New Contact: ", this.state);
   }
 
   componentWillUnmount = () => {
-    
+
   }
   render() {
     if (this.props.loading) {
@@ -60,38 +57,38 @@ class New_home extends Component {
         </View>
       )
     } else {
-      console.log(this.state);
-      let countUser = 0;
-      userList = this.state.users.map((user) => {
-        console.log('imgpath', user.userImg);
-        return (
-          <View style={{ flex: 0.33, flexDirection: 'column', flexWrap: 'wrap' }} key={user.uname} >
-            <View style={{ flex: 0.8, borderRadius: 100, backgroundColor: '#f7f6f6', justifyContent: 'center', alignItems: 'center', }}>
-              <Image source={{ uri: user.userimg }} ImageSourcePropTyp style={{ resizeMode: 'stretch', height: height * 0.16, width: width * 0.273, borderRadius: 50 }} />
-            </View>
-            <View style={{ flex: 0.2, flexDirection: 'row' }}>
-              <Text style={{ fontFamily: "Verdana", fontSize: 12, fontWeight: 'bold', textAlign: 'center', marginLeft: width * 0.1, color: '#000', padding: 8 }}>
-                {user.name}
-              </Text>
-            </View>
-          </View>
-        )
-        countUser = countUser + 1;
-      });
-      console.log(userList);
-      return (
-        //<KeyboardAwareScrollView ref="scroll" style={{backgroundColor:'white'}}>
-        <View style={styles.container}>
+      console.log(this.props.users);
+      userList = <View style={{ justifyContent: "center", alignContent: 'center', flex: 0.8, padding: 10, marginLeft: 45 }}>
+        {this.props.users ?
+          <FlatList
+            numColumns={3}
+            scrollEnabled={false}
+            data={this.props.users}
+            keyExtractor={item => item.id}
+            renderItem={({ item, index }) => {
+              return (
+                <View style={{ width: 120, height: 120 }}>
+                  <Avatar large rounded source={{ uri: item.userImg }} onPress={() => { this.setState({ modalVisible: !this.state.modalVisible, contact: item }) }} />
+                  <Text style={{ fontFamily: "Verdana", fontSize: 12, marginLeft: 10, marginTop: 5, fontWeight: 'bold', color: '#000' }}> {item.name}</Text>
+                </View>
+              )
+            }}
+          />
+          : null
+        }
+      </View>
 
+
+      return (
+        <View style={styles.container}>
           <View style={{ flex: 0.13, backgroundColor: 'rgb(68, 35, 124)', flexDirection: 'row' }}>
             <View style={{ flex: 0.8 }}>
               <Text style={{ fontFamily: "Verdana", fontSize: 22, textAlign: 'right', color: 'white', padding: 26 }}>Create a new Home</Text>
             </View>
             <View style={{ flex: 0.2 }}>
-              <Icon name='times' style={{ color: 'white', fontSize: 20, padding: 28, marginTop: 3 }} onPress={() => Actions.Create_profile()} />
+              <Icon name='times' style={{ color: 'white', fontSize: 20, padding: 28, marginTop: 3 }} onPress={() => Actions.No_peeping()} />
             </View>
           </View>
-
           <View style={{ flex: 0.28, marginTop: 20, flexDirection: 'column' }}>
             <View style={{ flex: 0.13 }}>
               <Text style={{ fontFamily: "Verdana", fontSize: 19, fontWeight: 'bold', textAlign: 'center', color: 'rgb(68, 35, 124)' }}>Housemates</Text>
@@ -105,20 +102,71 @@ class New_home extends Component {
               </TouchableOpacity>
               <Icon name='plus' style={{ color: 'rgb(68, 35, 124)', fontSize: 30, position: 'absolute', marginLeft: width * 0.8205, marginTop: height * 0.105 }} onPress={() => Actions.Add_person()} />
             </View>
-          </View>
 
-          <View style={{ flex: 0.59, flexDirection: 'column', marginTop: 15 }}>
-            <View style={{ flex: 0.4, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
-              {userList}
-            </View>
-            <View style={{ flex: 0.4, flexDirection: 'row' }}>
-              <View style={{ flex: 0.33, borderRadius: 100, backgroundColor: '#f7f6f6', justifyContent: 'center', alignContent: 'center' }}>
-                <Icon name='plus' style={{ color: 'gray', fontSize: 80, padding: 20, marginLeft: width * 0.04, position: 'absolute' }}
-                  onPress={() => Actions.Add_person()} />
+            <Modal
+              isVisible={this.state.modalVisible}
+              animationIn="slideInLeft"
+              animationOut="slideOutRight">
+              {console.log("contact : ", this.state.contact)}
+              <View style={styles.modalContent}>
+                <View style={{ flex: 0.9, width: 150, height: 150, justifyContent: "center", alignItems: "center", }}>
+                  <Avatar large rounded source={{ uri: this.state.contact.userImg }} style={{ marginLeft: 20 }} />
+                  <Text style={{ fontFamily: "Verdana", fontSize: 20, textAlign: 'center', marginTop: 10, fontWeight: 'bold', color: '#000' }}> {this.state.contact.name} , {this.state.contact.age}</Text>
+                </View>
+                {/*  <View style={{ backgroundColor: 'green', flex: 0.5, flexDirection: 'column', position: 'relative', justifyContent: 'space-between' }}>
+                  <View style={{ flex: 0.5, backgroundColor: 'red', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', marginTop: height * 0.04 }}>
+                    {renderIf(this.state.contact && this.state.contact.tags && this.state.contact.tags.Cooking)(
+                      <View style={{ flex: 0.30, borderRadius: 10, backgroundColor: 'rgb(68, 35, 124)', position: 'relative', marginTop: height * 0.01 }}>
+                        <Text style={{ fontSize: 16, textAlign: 'left', color: 'white', padding: 10 }}>Cooking</Text>
+                        <Icon name='times' style={{ color: 'white', fontSize: 15, marginTop: height * 0.02, position: 'absolute', marginLeft: width * 0.25 }} onPress={() => { this.handleTag('Cooking') }} />
+                      </View>
+                    )}
+                    {renderIf(this.state.contact && this.state.contact.tags && this.state.contact.tags.Music)(
+                      <View style={{ flex: 0.30, borderRadius: 10, backgroundColor: 'rgb(68, 35, 124)', position: 'relative', marginTop: height * 0.01 }}>
+                        <Text style={{ fontSize: 16, textAlign: 'left', color: 'white', padding: 10 }}>Music</Text>
+                        <Icon name='times' style={{ color: 'white', fontSize: 15, marginTop: height * 0.02, position: 'absolute', marginLeft: width * 0.25 }} onPress={() => { this.handleTag('Music') }} />
+                      </View>
+                    )}
+                    {renderIf(this.state.contact && this.state.contact.tags && this.state.contact.tags.Weekends)(
+                      <View style={{ flex: 0.30, borderRadius: 10, backgroundColor: 'rgb(68, 35, 124)', position: 'relative', marginTop: height * 0.01 }}>
+                        <Text style={{ fontSize: 16, textAlign: 'left', color: 'white', padding: 10 }}>Weekends</Text>
+                        <Icon name='times' style={{ color: 'white', fontSize: 15, marginTop: height * 0.02, position: 'absolute', marginLeft: width * 0.25 }} onPress={() => { this.handleTag('Weekends') }} />
+                      </View>
+                    )}
+                  </View>
+                  <View style={{ flex: 0.3, flexDirection: 'column', justifyContent: 'space-around', }}>
+                    {renderIf(this.state.contact && this.state.contact.tags && this.state.contact.tags.Coffee)(
+                      <View style={{ flex: 0.30, borderRadius: 10, backgroundColor: 'rgb(68, 35, 124)', position: 'relative', marginTop: height * 0.05 }}>
+                        <Text style={{ fontSize: 16, textAlign: 'left', color: 'white', padding: 10 }}>Coffee</Text>
+                        <Icon name='times' style={{ color: 'white', fontSize: 15, marginTop: height * 0.02, position: 'absolute', marginLeft: width * 0.25 }} onPress={() => { this.handleTag('Coffee') }} />
+                      </View>
+                    )}
+                    {renderIf(this.state.contact && this.state.contact.tags && this.state.contact.tags.Running)(
+                      <View style={{ flex: 0.30, borderRadius: 10, backgroundColor: 'rgb(68, 35, 124)', position: 'relative', marginTop: height * 0.05 }}>
+                        <Text style={{ fontSize: 16, textAlign: 'left', color: 'white', padding: 10 }}>Running</Text>
+                        <Icon name='times' style={{ color: 'white', fontSize: 15, marginTop: height * 0.02, position: 'absolute', marginLeft: width * 0.25 }} onPress={() => { this.handleTag('Running') }} />
+                      </View>
+                    )}
+                  </View>
+                </View> */}
+                {/* <TouchableOpacity onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
+                  <View style={styles.button}>
+                    <Text onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>X</Text>
+                  </View>
+                </TouchableOpacity> */}
+                <View style={{ flex: 0.10, justifyContent: 'center', alignItems: 'center', backgroundColor: '#19B5FE' }}>
+                  <TouchableOpacity style={{}} onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }} >
+                    <Text style={{ fontSize: 20, textAlign: 'center', color: '#fff', padding: 10 }}>Remove from Profile <Icon name='times' /></Text>
+                  </TouchableOpacity>
+                </View>
+
               </View>
-              <View style={{ flex: 0.33, borderRadius: 100, backgroundColor: '#f7f6f6' }}></View>
-              <View style={{ flex: 0.33, borderRadius: 100, backgroundColor: '#f7f6f6' }}></View>
-            </View>
+            </Modal>
+
+
+          </View>
+          <View style={{ flex: 0.59, flexDirection: 'column', marginTop: 15, justifyContent: 'center', alignItems: 'center', }}>
+            {userList}
             <View style={{ flex: 0.2, flexDirection: 'row', position: 'absolute', bottom: 0 }}>
               <View style={{ flex: 0.4 }}></View>
               <View style={{ flex: 0.3 }}></View>
@@ -128,8 +176,8 @@ class New_home extends Component {
             </View>
           </View>
 
-        </View>
-        // </KeyboardAwareScrollView>
+        </View >
+        //</KeyboardAwareScrollView>
       );
     }
   }
@@ -165,10 +213,46 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
+    marginTop: Platform.OS == 'ios' ? 20 : 0,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: 'white',
-    //backgroundColor: '#F5FCFF',
+  },
+  button: {
+    backgroundColor: "lightblue",
+    padding: 12,
+    margin: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)"
+  },
+  modalContent: {
+    flex: 0.5,
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)"
   },
 });
+
+
+/*
+          <Modal
+            isVisible={this.modalVisible}
+            animationIn="slideInLeft"
+            animationOut="slideOutRight">
+            <View style={styles.modalContent}>
+              <Text>Hello!</Text>
+              <TouchableOpacity onPress={() => { this.setState({ modalVisible: !modalVisible }) }}>
+                <View style={styles.button}>
+                  <Text>X</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+
+          */

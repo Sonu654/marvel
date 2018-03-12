@@ -1,40 +1,41 @@
-{
-    "users": [
-        {
-            "uname": "Suraj123",
-            "name": "Suraj Sanwal",
-            "userImg": "../Images/circle2.jpeg",
-            "tags": {
-                "0": "Cooking",
-                "1": "Music",
-                "2": "Weekends",
-                "3": "Coffee",
-                "4": "Running"
-            }
-        },
-        {
-            "uname": "lazyuck408",
-            "name": "romain",
-            "userImg": "../Images/circle1.jpeg",
-            "tags": {
-                "0": "Cooking",
-                "1": "Music",
-                "2": "Weekends",
-                "3": "Coffee",
-                "4": "Running"
-            }
-        },
-        {
-            "uname": "lazyduc08",
-            "name": "romain",
-            "userImg": "../Images/circle2.jpeg",
-            "tags": {
-                "0": "Cooking",
-                "1": "Music",
-                "2": "Weekends",
-                "3": "Coffee",
-                "4": "Running"
-            }
+[
+    {
+        "uname": "Suraj123",
+        "age":23,
+        "name": "Suraj",
+        "userImg": "http://localhost:8081/src/Images/circle2.jpeg",
+        "tags": {
+             "Cooking":true,
+             "Music":false,
+             "Weekends":true,
+             "Coffee":true,
+             "Running":true
         }
-    ]
-}
+    },
+    {
+        "uname": "lazyuck408",
+        "age":23,
+        "name": "Romain",
+        "userImg": "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+        "tags": {
+            "Cooking":true,
+             "Music":true,
+             "Weekends":true,
+             "Coffee":false,
+             "Running":true
+        }
+    },
+    {
+        "uname": "Hazyduc08",
+        "age":23,
+        "name": "Advt",
+        "userImg": "http://localhost:8081/src/Images/circle4.jpeg",
+        "tags": {
+            "Cooking":true,
+             "Music":true,
+             "Weekends":false,
+             "Coffee":true,
+             "Running":false
+        }
+    }
+]

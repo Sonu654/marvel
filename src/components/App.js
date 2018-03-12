@@ -9,19 +9,20 @@ import {
 import { Provider } from 'react-redux';
 import store from '../store/';
 
-import { Router, Scene, Stack } from 'react-native-router-flux'
-import Add_person from './Add_person.js'
-import Add_room from './Add_room.js'
-import Create_profile from './Create_profile.js'
-import New_home_housemates from './New_home_housemates.js'
-import New_home_housephotos from './New_home_housephotos.js'
-import Start from './Start.js'
-import Rooms from './Rooms.js'
-import Short_bio from './Short_bio.js'
-import No_peeping from './No_peeping.js'
-import Location from './Location.js'
-import Success from './Success.js'
-import Add_profile from './Add_profile.js'
+import { Router, Scene, Stack } from 'react-native-router-flux';
+import Add_person from './Add_person';
+import Add_room from './Add_room';
+import Create_profile from './Create_profile';
+import New_home_housemates from './New_home_housemates';
+import New_home_housephotos from './New_home_housephotos';
+import Start from './Start';
+import Rooms from './Rooms';
+import Short_bio from './Short_bio';
+import No_peeping from './No_peeping';
+import Location from './Location';
+import Success from './Success';
+import Add_profile from './Add_profile';
+import example from './modal';
 
 
 export default class App extends Component {
@@ -31,9 +32,9 @@ export default class App extends Component {
       <Provider store={store}>
         <Router>
           <Stack key='root' >
-            <Scene hideNavBar hideTabBar component={Start} title="Start" key="Start"  initial/>
+            <Scene hideNavBar hideTabBar component={Start} title="Start" key="Start" initial/>
             <Scene hideNavBar hideTabBar component={Create_profile} title="Profile" key="Create_profile" />
-            <Scene hideNavBar hideTabBar component={New_home_housemates} title="New_home_housemates" key="New_home_housemates" />
+            <Scene hideNavBar hideTabBar component={New_home_housemates} title="New_home_housemates" key="New_home_housemates"   />
             <Scene hideNavBar hideTabBar component={New_home_housephotos} title="New_home_housephotos" key="New_home_housephotos" />
             <Scene hideNavBar hideTabBar component={Add_room} title="Add_room" key="Add_room" />
             <Scene hideNavBar hideTabBar component={Add_person} title="Add_person" key="Add_person" />
@@ -43,6 +44,7 @@ export default class App extends Component {
             <Scene hideNavBar hideTabBar component={Location} title="Location" key="Location" />
             <Scene hideNavBar hideTabBar component={Success} title="Success" key="Success" />
             <Scene hideNavBar hideTabBar component={Add_profile} title="Add_profile" key="Add_profile"/>
+            <Scene hideNavBar hideTabBar component={example} title="modal" key="modal"/>       
           </Stack>
         </Router>
       </Provider>

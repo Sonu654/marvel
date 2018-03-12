@@ -8,7 +8,7 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Dimensions,
+  Dimensions
 } from 'react-native';
 var {width} = Dimensions.get('window');
 var {height}=Dimensions.get('window');
@@ -62,7 +62,7 @@ export default class New_home_housephotos extends Component{
           <View style={{flex:0.3,flexDirection:'row'}}>
             <View style={{flex:0.3}}>
               <Icon name='circle' style={{color:'rgb(68, 35, 124)', fontSize:80,marginLeft:width*0.07,position:'relative',marginTop:height*0.02}}/>
-              <Icon name='arrow-left' style={{color:'white', fontSize:40,marginLeft:width*0.12,position:'absolute',marginTop:height*0.049}} onPress={()=>Actions.Short_bio()}/>
+              <Icon name='arrow-left' style={{color:'white', fontSize:40,marginLeft:width*0.12,position:'absolute',marginTop:height*0.049}} onPress={()=>Actions.pop()}/>
             </View>
             <View style={{flex:0.4}}></View>
             <View style={{flex:0.3}}>
@@ -77,6 +77,7 @@ export default class New_home_housephotos extends Component{
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: Platform.OS == 'ios' ? 20 : 0,
     flex: 1,
     flexDirection:'column',
      justifyContent: 'center',

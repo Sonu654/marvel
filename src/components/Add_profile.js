@@ -14,7 +14,7 @@ class AddPerson extends Component {
     this.state = {
       name: 'Marval',
       age: '25',
-      pic: './logo.png',
+      pic: 'http://localhost:8081/src/Images/circle2.jpeg',
       tag: {
         Cooking: true,
         Music: true,
@@ -35,8 +35,9 @@ class AddPerson extends Component {
     this.setState({ age: text })
   }
 
-  handalAddBtn = (name, age, pic, tag) => {
-    this.props.addPerson(name, age, pic, tag);
+  handalAddBtn = () => {
+    console.log(this.state);
+    this.props.addPerson(this.state.name, this.state.age, this.state.pic, this.state.tag);
   }
 
   handleTag = (tagName) => {
@@ -79,10 +80,10 @@ class AddPerson extends Component {
               </View>
               <View style={{ flex: 0.1, flexDirection: 'row', marginTop: height * 0.01 }}>
                 <View style={{ flex: 0.7 }}>
-                  <TextInput onChangeText={this.handleName} style={{ fontSize: 18, marginLeft: 35 }} placeholder='ABC' underlineColorAndroid="transparent" value="Marval" />
+                  <TextInput onChangeText={this.handleName} style={{ fontSize: 18, marginLeft: 35 }} placeholder='ABC' underlineColorAndroid="transparent" />
                 </View>
                 <View style={{ flex: 0.3 }}>
-                  <TextInput onChangeText={this.handleAge} style={{ fontSize: 18, marginLeft: 30 }} placeholder='xx' value='25' underlineColorAndroid="transparent" />
+                  <TextInput onChangeText={this.handleAge} style={{ fontSize: 18, marginLeft: 30 }} placeholder='xx' underlineColorAndroid="transparent" />
                 </View>
               </View>
               <View style={{ flex: 0.3, position: 'relative', justifyContent: 'space-between' }}>
@@ -128,7 +129,7 @@ class AddPerson extends Component {
           </KeyboardAwareScrollView>
         </View>
         <View style={{ flex: 0.10, justifyContent: 'center', alignItems: 'center', backgroundColor: '#19B5FE' }}>
-          <TouchableOpacity style={{}} onPress={() => { this.handalAddBtn(this.state.name, this.state.age, this.state.tag) }} >
+          <TouchableOpacity style={{}} onPress={() => { this.handalAddBtn() }} >
             <Text style={{ fontSize: 20, textAlign: 'center', color: '#fff', padding: 10 }}>Add <Icon name='check' /></Text>
           </TouchableOpacity>
         </View>
