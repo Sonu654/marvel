@@ -40,7 +40,7 @@ class Add_person extends Component {
                 <View style={{ flex: 0.12, backgroundColor: '#fbf1f1' }}></View>
                 <View style={{ flex: 0.76, flexDirection: 'column' }}>
                   <View style={{ flex: 0.5, padding: 15 }}>
-                    <Icon name='search' style={{ color: '#d9d8d8', fontSize: 50, textAlign: 'center' }} />
+                    <Icon name='search' style={{ color: '#d9d8d8', fontSize: 50, textAlign: 'center' }} onPress={()=>{Actions.search()}}/>
                   </View>
                   <View style={{ flex: 0.5 }}>
                     <Text style={{ textAlign: 'center', fontSize: 16, color: '#acacac' }}> Search for</Text>

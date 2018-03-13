@@ -23,6 +23,7 @@ import Location from './Location';
 import Success from './Success';
 import Add_profile from './Add_profile';
 import example from './modal';
+import Search from './search';
 
 
 export default class App extends Component {
@@ -32,7 +33,7 @@ export default class App extends Component {
       <Provider store={store}>
         <Router>
           <Stack key='root' >
-            <Scene hideNavBar hideTabBar component={Start} title="Start" key="Start" initial/>
+            <Scene hideNavBar hideTabBar component={Start} title="Start" key="Start" />
             <Scene hideNavBar hideTabBar component={Create_profile} title="Profile" key="Create_profile" />
             <Scene hideNavBar hideTabBar component={New_home_housemates} title="New_home_housemates" key="New_home_housemates"   />
             <Scene hideNavBar hideTabBar component={New_home_housephotos} title="New_home_housephotos" key="New_home_housephotos" />
@@ -45,6 +46,7 @@ export default class App extends Component {
             <Scene hideNavBar hideTabBar component={Success} title="Success" key="Success" />
             <Scene hideNavBar hideTabBar component={Add_profile} title="Add_profile" key="Add_profile"/>
             <Scene hideNavBar hideTabBar component={example} title="modal" key="modal"/>       
+            <Scene hideNavBar hideTabBar component={Search} title="Search" key="search" initial/>       
           </Stack>
         </Router>
       </Provider>
