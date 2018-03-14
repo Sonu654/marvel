@@ -1,8 +1,14 @@
+import { AsyncStorage } from 'react-native';
 import { combineReducers } from 'redux';
-import { LAUNCH, USER_AVAILABLE, USER_FOUND, DEMO_USER_SET } from '../actions/';
-let defaultState = { loading: true };
+import { LAUNCH, USER_AVAILABLE, USER_FOUND, DEMO_USER_SET, MERGE_USER } from '../actions/';
+import demo from '../demo.json';
+import Data from '../users.json';
+import { Actions } from 'react-native-router-flux';
+let defaultState = { loading: true, data: [], mergeuser: [], user: [] };
 const launchReducer = (state = defaultState, action) => {
-    console.log("launch");
+    AsyncStorage.setItem("demo", JSON.stringify(demo));
+    AsyncStorage.setItem("users", JSON.stringify(Data));
+
     switch (action.type) {
         case LAUNCH:
             return {
@@ -15,9 +21,9 @@ const launchReducer = (state = defaultState, action) => {
 }
 
 const userReducer = (state = defaultState, action) => {
-    console.log("user Reducer");
     switch (action.type) {
         case USER_AVAILABLE:
+            console.log("action.data: ", action.data);
             return {
                 ...state,
                 data: action.data,
@@ -30,7 +36,6 @@ const userReducer = (state = defaultState, action) => {
 };
 
 const contactReducer = (state = defaultState, action) => {
-    console.log("contact");
     switch (action.type) {
         case USER_FOUND:
             return {
@@ -45,14 +50,21 @@ const contactReducer = (state = defaultState, action) => {
 }
 
 const demoUserReducer = (state = defaultState, action) => {
-    console.log("demo action: ",action);
+    console.log("demo action: ", action);
     switch (action.type) {
         case DEMO_USER_SET:
+            console.log(typeof (action.data));
             return {
                 ...state,
-                data:action.data,
-                loading:false
+                data: action.data,
+                loading: false
             };
+        case MERGE_USER:
+            return {
+                ...state,
+                mergeuser: action.data,
+            };
+
         default:
             return { ...state }
     }
@@ -60,12 +72,12 @@ const demoUserReducer = (state = defaultState, action) => {
 
 const rootReducer = combineReducers(
     {
-    launchReducer,
-    userReducer,
-    contactReducer,
-    demoUserReducer
+        launchReducer,
+        userReducer,
+        contactReducer,
+        demoUserReducer
 
-    // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
-})
+        // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
+    })
 
 export default rootReducer;

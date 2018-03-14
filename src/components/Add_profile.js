@@ -56,19 +56,17 @@ class AddPerson extends Component {
         <View style={{ flex: 0.9 }}>
           <KeyboardAwareScrollView>
             <View style={{ flex: 0.13, backgroundColor: 'rgb(68, 35, 124)', flexDirection: 'row' }}>
-              <View style={{ flex: 0.2 }}>
-                <Icon name='arrow-left' style={{ color: 'white', fontSize: 20, padding: 28, marginTop: 3 }} onPress={() => Actions.Add_person()} />
-              </View>
               <View style={{ flex: 0.8 }}>
-                <Text style={{ fontFamily: "Verdana", fontSize: 22, textAlign: 'left', color: 'white', padding: 26, marginLeft: 10 }}>Add a new person</Text>
+                <Text style={{ fontFamily: "Verdana", fontSize: 22, textAlign: 'center', color: 'white', padding: 30 }}>Add New Person</Text>
+              </View>
+              <View style={{ flex: 0.2 }}>
+                <Icon name='times' style={{ color: 'white', fontSize: 20, padding: 28, marginTop: 3 }} onPress={() => Actions.pop()} />
               </View>
             </View>
             <View style={{ flex: 0.87, flexDirection: 'column', position: 'relative', backgroundColor: '#f7f6f6' }}>
               <View style={{ flex: 0.5, flexDirection: 'row', marginTop: height * 0.015 }}>
                 <View style={{ flex: 0.3 }}></View>
                 <View style={{ flex: 0.7, borderRadius: 100 }}>
-                  {console.log("height : ", height, " & width : ", width)}
-                  {console.log("height *0.2: ", height * 0.2, " & width *0.4: ", width * 0.355)}
                   <Image source={require('../Images/profile.png')} style={{ height: height * 0.2, width: width * 0.355, borderRadius: 65, position: 'relative' }} />
                 </View>
                 <Icon name='circle' style={{ color: 'white', fontSize: 75, zIndex: 99, marginLeft: width * 0.52, marginTop: height * 0.15, position: 'absolute' }} />

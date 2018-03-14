@@ -1,0 +1,41 @@
+[
+      {
+          "uname": "dasd234",
+          "age": 23,
+          "name": "Sandeep",
+          "userImg": "http://localhost:8081/src/Images/circle2.jpeg",
+          "tags": {
+              "Cooking": true,
+              "Music": true,
+              "Weekends": true,
+              "Coffee": false,
+              "Running": true
+            }
+      },
+      {
+          "uname": "fdf43",
+          "age": 18,
+          "name": "Swati",
+          "userImg": "http://localhost:8081/src/Images/circle4.jpeg",
+          "tags": {
+              "Cooking": true,
+              "Music": true,
+              "Weekends": true,
+              "Coffee": true,
+              "Running": true
+            }
+      },
+      {
+          "uname": "dad234",
+          "age": 12,
+          "name": "Krish",
+          "userImg": "http://localhost:8081/src/Images/circle2.jpeg",
+          "tags": {
+              "Cooking": true,
+              "Music": true,
+              "Weekends": true,
+              "Coffee": true,
+              "Running": false
+            }
+      }
+]

@@ -2,33 +2,40 @@ export const LAUNCH = 'LAUNCH';
 export const USER_AVAILABLE = 'USER_AVAILABLE';
 export const USER_FOUND = 'USER_FOUND';
 export const DEMO_USER_SET = 'DEMO_USER_SET';
+export const MERGE_USER = 'MERGE_USER';
 import { AsyncStorage } from 'react-native';
-import Data from '../users.json';
 import { Actions } from 'react-native-router-flux';
-//import Data from '../instruction.json';
-//                   instruction.json
 
 export function launch() {
+
     return (dispatch) => {
         setTimeout(() => {
             dispatch({ type: LAUNCH, data: [] })
-        }, 2000);
+        }, 1);
     }
 }
 
 export function getUser() {
-
+    let Data = [];
+    AsyncStorage.getItem("users").then((val) => {
+        console.log("val get user: ", JSON.parse(val));
+        Data = JSON.parse(val);
+    });
     return (dispatch) => {
         setTimeout(() => {
-            //     console.log(Data);
             dispatch({ type: USER_AVAILABLE, data: Data });
-        }, 2000);
+        }, 1);
     }
 }
 
 
 export function getUserByName(uname) {
     //  console.log('inside getUserByName');
+    let Data = [];
+    AsyncStorage.getItem("users").then((val) => {
+        console.log("val by name: ", JSON.parse(val));
+        Data = JSON.parse(val);
+    });
     users = Data;
     return (dispatch) => {
         for (let user in users) {
@@ -46,80 +53,53 @@ export function getUserByName(uname) {
     }
 }
 
-
-export function addPerson(name, age, pic, tag) {
-    contact = {
-        uname: name + age,
-        age: age,
-        name: name,
-        userImg: pic,
-        tags: tag
-    };
-    Data.push(contact);
-    console.log("pushed data : ", Data);
+export function addPerson(contact) {
+    // let contact = {
+    //     uname: name + age,
+    //     age: age,
+    //     name: name,
+    //     userImg: pic,
+    //     tags: tag
+    // };
+    console.log("myContact: ", JSON.stringify(contact));
+    let Data = [];
+    let d = [];
+    console.log("type of d : ", d, typeof d);
     return (dispatch) => {
-        dispatch({ type: USER_AVAILABLE, data: Data });
-        Actions.New_home_housemates();
+        AsyncStorage.getItem("users").then((val) => {
+            console.log("val: ", val);
+            d.push(JSON.parse(val));
+            d[0].push(contact);
+            console.log("d : ", d[0]);           
+            AsyncStorage.setItem("user", JSON.stringify(d[0]),(err)=>{
+                console.log("err : ",err);
+            }).then((res) => {
+                console.log("res : ",res)
+                AsyncStorage.getItem("users").then((val) => {
+                        Data = JSON.parse(val);
+                        console.log("Data : ", Data);
+                        dispatch({ type: USER_AVAILABLE, data: Data });
+                        Actions.New_home_housemates();
+                    });
+            });
+        });
     }
 }
 
 export function getDemoUser() {
-    let demo = [
-        {
-            uname: "dasd234",
-            age: 23,
-            name: "Sandeep",
-            userImg: "http://localhost:8081/src/Images/circle2.jpeg",
-            tags: {
-                Cooking: true,
-                Music: true,
-                Weekends: true,
-                Coffee: false,
-                Running: true
-            }
-        },
-        {
-            uname: "fdf43",
-            age: 18,
-            name: "Swati",
-            userImg: "http://localhost:8081/src/Images/circle4.jpeg",
-            tags: {
-                Cooking: true,
-                Music: true,
-                Weekends: true,
-                Coffee: true,
-                Running: true
-            }
-        },
-        {
-            uname: "dasd234",
-            age: 12,
-            name: "Krish",
-            userImg: "http://localhost:8081/src/Images/circle2.jpeg",
-            tags: {
-                Cooking: true,
-                Music: true,
-                Weekends: true,
-                Coffee: true,
-                Running: false
-            }
-        }
-    ];
-    console.log("demo action ");
+
+}
+
+export function setDemoUser() {
+    asyncDemo = [];
+    AsyncStorage.getItem("demo").then((val) => {
+        console.log("val: ", JSON.parse(val));
+        asyncDemo = JSON.parse(val);
+    });
     return (dispatch) => {
-        try {
-            req = AsyncStorage.setItem("users", demo);
-            console.log("req : ", req);
-            req.then((res) => {
-                console.log("res : ", res);
-               // dispatch({ type: DEMO_USER_SET, data: demo });
-            });
-        } catch (err) {
-            console.log("err : ", err);
-        } finally {
-            AsyncStorage.getItem("users", (err, result) => {
-                console.log("Result : ", result);
-            });
-        }
+        setTimeout(() => {
+            dispatch({ type: DEMO_USER_SET, data: asyncDemo });
+        }, 1);
+
     }
 }

@@ -46,7 +46,7 @@ export default class App extends Component {
             <Scene hideNavBar hideTabBar component={Success} title="Success" key="Success" />
             <Scene hideNavBar hideTabBar component={Add_profile} title="Add_profile" key="Add_profile"/>
             <Scene hideNavBar hideTabBar component={example} title="modal" key="modal"/>       
-            <Scene hideNavBar hideTabBar component={Search} title="Search" key="search" initial/>       
+            <Scene hideNavBar hideTabBar component={Search} title="Search" key="search"  initial/>       
           </Stack>
         </Router>
       </Provider>
